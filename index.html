@@ -19,7 +19,7 @@
       position: relative;
     }
 
-    /* Animated flame particles */
+    /* Flame-like particles */
     .particle {
       position: absolute;
       border-radius: 50%;
@@ -38,33 +38,35 @@
       z-index: 10;
       background: linear-gradient(135deg, #ff6b35, #ff3f1f, #ffd200);
       border-radius: 15px;
-      padding: 30px;
-      margin: 40px 20px;
-      width: 100%;
-      max-width: 500px;
+      padding: 25px;
+      margin: 20px;
+      width: 90%;
+      max-width: 480px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       text-align: right;
+      box-sizing: border-box;
     }
 
     h1 {
       text-align: center;
       margin-bottom: 20px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: #fff;
       text-shadow: 1px 1px 3px #000;
     }
 
     input[type="file"] {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border-radius: 8px;
       border: none;
       margin-bottom: 15px;
+      font-size: 1rem;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       border: none;
       border-radius: 8px;
       background: #ff3f1f;
@@ -72,6 +74,7 @@
       font-size: 1rem;
       cursor: pointer;
       transition: background 0.3s;
+      margin-bottom: 10px;
     }
 
     button:hover {
@@ -81,9 +84,10 @@
     .result {
       background: rgba(255,255,255,0.1);
       border-radius: 10px;
-      padding: 15px;
-      margin-top: 15px;
+      padding: 12px;
+      margin-top: 10px;
       word-wrap: break-word;
+      font-size: 0.95rem;
     }
 
     .preview {
@@ -100,13 +104,14 @@
     .copy-btn {
       display: block;
       margin: 10px auto 0 auto;
-      padding: 10px 15px;
+      padding: 12px 15px;
       background: #ffd200;
       color: #000;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
     }
 
     .copy-btn:hover {
@@ -114,7 +119,7 @@
     }
 
     .tip {
-      margin-top: 15px;
+      margin-top: 10px;
       background: rgba(0,0,0,0.3);
       padding: 10px;
       border-radius: 8px;
@@ -122,6 +127,12 @@
       color: #fff;
     }
 
+    /* MOBILE FONT SCALING */
+    @media (max-width: 400px) {
+      h1 { font-size: 1.4rem; }
+      button, .copy-btn { font-size: 0.95rem; padding: 12px; }
+      .tip { font-size: 0.85rem; }
+    }
   </style>
 </head>
 <body>
@@ -129,15 +140,15 @@
 <!-- Flame-like particles -->
 <script>
   const colors = ["#ff6b35","#ff3f1f","#ffd200"];
-  for(let i=0;i<30;i++){
+  for(let i=0;i<25;i++){  // reduced for mobile performance
     const p = document.createElement('div');
     p.classList.add('particle');
-    const size = Math.random()*15+5;
+    const size = Math.random()*12+6;
     p.style.width = size + "px";
     p.style.height = size + "px";
     p.style.background = colors[Math.floor(Math.random()*colors.length)];
     p.style.left = Math.random()*100 + "vw";
-    p.style.animationDuration = (Math.random()*6+4) + "s";
+    p.style.animationDuration = (Math.random()*5+4) + "s";
     document.body.appendChild(p);
   }
 </script>
@@ -177,7 +188,7 @@
     formData.append('image', fileInput.files[0]);
 
     // ضع هنا مفتاح API الخاص بك من ImgBB
-    const apiKey = 'f543fb9c1a9c8a49230f82fc378d19b2';
+    const apiKey = '';
 
     resultDiv.style.display = 'block';
     resultDiv.textContent = 'جاري رفع الصورة...';
