@@ -15,7 +15,8 @@
       justify-content: center;
       align-items: flex-start;
       background: #1a1a1a;
-      overflow: hidden;
+      overflow-y: auto;      /* ✅ allow vertical scrolling */
+      overflow-x: hidden;    /* ✅ prevent horizontal overflow */
       position: relative;
     }
 
@@ -25,6 +26,7 @@
       border-radius: 50%;
       opacity: 0.7;
       animation: floatUp 8s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -45,6 +47,7 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.5);
       text-align: right;
       box-sizing: border-box;
+      padding-bottom: 40px; /* ✅ space for copy button on small screens */
     }
 
     h1 {
@@ -97,8 +100,11 @@
 
     .preview img {
       max-width: 100%;
+      max-height: 70vh; /* ✅ prevent overflow on mobile */
+      height: auto;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      object-fit: contain;
     }
 
     .copy-btn {
@@ -229,4 +235,3 @@
 
 </body>
 </html>
-
